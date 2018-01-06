@@ -1,0 +1,5 @@
+nimssh2
+nimcache
+*.exe
+*.swp
+*test
