@@ -7,9 +7,9 @@ __Installation__
 Nimssh2 can be installed via [Nimble](https://github.com/nim-lang/nimble):
 
 ```
-> git clone https://github.com/genotrance/nimssh2
-> cd nimssh2
-> nimble install
+> nimble install nimgen
+
+> nimble install nimssh2
 ```
 
 This will download, wrap and install nimssh2 in the standard Nimble package location, typically ~/.nimble. Once installed, it can be imported into any Nim program.
