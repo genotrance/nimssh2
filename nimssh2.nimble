@@ -15,14 +15,14 @@ import distros
 
 var cmd = ""
 if detectOs(Windows):
-    cmd = "cmd /c "
+  cmd = "cmd /c "
 
 task setup, "Checkout and generate":
-    exec cmd & "nimgen nimssh2.cfg"
+  exec cmd & "nimgen nimssh2.cfg"
 
 before install:
-    setupTask()
+  setupTask()
 
 task test, "Run tests":
-    withDir("tests"):
-        exec "nim c -r sshtest"
+  withDir("tests"):
+    exec "nim c -r sshtest"
