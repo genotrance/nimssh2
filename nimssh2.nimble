@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.2"
+version       = "0.1.3"
 author        = "genotrance"
 description   = "libssl2 wrapper for Nim"
 license       = "MIT"
@@ -9,20 +9,23 @@ skipDirs = @["tests"]
 
 # Dependencies
 
-requires "nimgen >= 0.1.4"
+requires "nimgen >= 0.4.0"
 
-import distros
+var
+  name = "nimssh2"
+  cmd = when defined(Windows): "cmd /c " else: ""
 
-var cmd = ""
-if detectOs(Windows):
-  cmd = "cmd /c "
+mkDir(name)
 
 task setup, "Checkout and generate":
-  exec cmd & "nimgen nimssh2.cfg"
+  if gorgeEx(cmd & "nimgen").exitCode != 0:
+    withDir(".."):
+      exec "nimble install nimgen -y"
+  exec cmd & "nimgen " & name & ".cfg"
 
 before install:
   setupTask()
 
 task test, "Run tests":
-  withDir("tests"):
-    exec "nim c -r sshtest"
+  exec "nim c -r tests/t" & name & ".nim"
+
